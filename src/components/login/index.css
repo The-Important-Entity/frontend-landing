@@ -1,0 +1,28 @@
+
+
+.form {
+    margin: auto;
+    width:600px;
+    height:600px;
+    margin-top: 5%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: white;
+}
+
+.Title {
+    padding-top: 10%;
+    text-align: center;
+    margin-top: 10%;
+    font-size: 30px;
+}
+
+.inputbox {
+    position: relative;
+    margin-top: 50px;
+}
+
+.error {
+    color: red;
+    margin-left: 150px;
+}

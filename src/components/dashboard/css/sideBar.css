@@ -1,0 +1,33 @@
+div {
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.sideBox {
+    width: 200px;
+    height: 100%;
+    background:white;
+    position: fixed;
+    box-shadow: 2px 0 10px 0 #000000;
+}
+
+.logo {
+    width:200px;
+    height:200px;
+    background: black;
+}
+
+.navElm {
+    width:200px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.navElm:hover {
+    background: #e8e8e8;
+}
