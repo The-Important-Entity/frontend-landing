@@ -18,7 +18,6 @@ class Login extends React.Component {
         this.state = {
             "error": ""
         }
-        
     }
 
     handleChangeUsername(event){
@@ -29,14 +28,21 @@ class Login extends React.Component {
         this.password = event.target.value;
     }
 
-    submit(){
+    handleCookie(){
+        const { cookies } = this.props;
+        if(cookies.get('jwt')) {
+            window.location.href = "/dashboard";
+        };
+    }
 
+    submit(){
         axios.post("http://192.168.1.111:2000/api/login", {
             "username": this.username,
             "password": this.password
         }).then(function(response) {
             const { cookies } = this.props;
             cookies.set('jwt', response.data.jwt);
+            window.location.href = "/dashboard";
         }.bind(this)).catch(function(err) {
             this.setState({
                 "error": <h1 className='error'>Incorrect username or password.</h1>
@@ -47,12 +53,13 @@ class Login extends React.Component {
 
     handleKey(event){
         if (event.key === 'Enter') {
-            this.submit().bind(this);
             event.preventDefault();
+            this.submit();
         }
     }
 
     render(){
+        this.handleCookie();
         return (
             <div className='form'>
                 <h1 className='Title'>Login</h1>

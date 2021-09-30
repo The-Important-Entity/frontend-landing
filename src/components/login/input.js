@@ -64,6 +64,7 @@ class ValidField extends React.Component {
             inputMode: "numeric"
           }}
           onKeyDown={this.props.onKeyDown}
+          onSubmit={this.props.onKeyDown}
         />
       </form>
     );
