@@ -36,7 +36,7 @@ class Login extends React.Component {
     }
 
     submit(){
-        axios.post("http://192.168.1.111:2000/api/login", {
+        axios.post("/api/login", {
             "username": this.username,
             "password": this.password
         }).then(function(response) {
