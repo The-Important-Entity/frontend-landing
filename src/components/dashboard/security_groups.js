@@ -35,8 +35,10 @@ class SecurityGroups extends React.Component {
             console.log(response);
             var groups = [];
             for (var i = 0; i < response.length; i++) {
-                groups.push(<Group id={response[i].id} alias={response[i].alias}/>)
+                const elm = <Group id={response[i].id} alias={response[i].alias}/>;
+                groups.push(elm)
             }
+            console.log(groups);
             this.setState({"groups": groups});
         }.bind(this)).catch(function(err) {
             const response = err;
