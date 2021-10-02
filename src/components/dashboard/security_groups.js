@@ -1,8 +1,10 @@
 import React from 'react';
 import './css/security_groups.css';
+import axios from 'axios';
+import { withCookies, Cookies } from "react-cookie";
+import { instanceOf } from "prop-types";
 
 class Group extends React.Component {
-
     render() {
         return (
             <div className='securityGroupElm'>
@@ -15,11 +17,36 @@ class Group extends React.Component {
             </div>
         )
     }
-
-
 }
 class SecurityGroups extends React.Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
 
+    constructor(){
+        super();
+        this.state = {
+            "groups": []
+        }
+    }
+
+    componentDidMount() {
+        axios.get("https://josephscalera.com/api/security_groups").then(function(response) {
+            console.log(response);
+            var groups = [];
+            response.array.forEach(element => {
+                groups.push(<Group id={element.id} alias={element.alias}/>)
+            });
+            this.setState({"groups": groups});
+        }.bind(this)).catch(function(err) {
+            const response = err;
+            console.log(response);
+        })
+    }
+
+    handleUnauthorized(){
+
+    }
     render(){
         return(
             <div className='container'>
@@ -27,11 +54,11 @@ class SecurityGroups extends React.Component {
                     <h1 className='title'>Security Groups</h1>
                 </div>
                 <div className='securityGroupContainer'>
-                    <Group id='1234' alias='My Group'/>
+                    {this.state.groups}
                 </div>
             </div>
         )
     }
 }
 
-export default SecurityGroups;
+export default withCookies(SecurityGroups);

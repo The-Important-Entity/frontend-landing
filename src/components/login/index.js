@@ -36,7 +36,7 @@ class Login extends React.Component {
     }
 
     submit(){
-        axios.post("/api/login", {
+        axios.post("https://josephscalera.com/api/login", {
             "username": this.username,
             "password": this.password
         }).then(function(response) {
