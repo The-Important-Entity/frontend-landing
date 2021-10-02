@@ -34,9 +34,9 @@ class SecurityGroups extends React.Component {
         axios.get("https://josephscalera.com/api/security_groups").then(function(response) {
             console.log(response);
             var groups = [];
-            response.array.forEach(element => {
-                groups.push(<Group id={element.id} alias={element.alias}/>)
-            });
+            for (var i = 0; i < response.length; i++) {
+                groups.push(<Group id={response[i].id} alias={response[i].alias}/>)
+            }
             this.setState({"groups": groups});
         }.bind(this)).catch(function(err) {
             const response = err;
